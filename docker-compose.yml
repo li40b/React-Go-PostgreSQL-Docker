@@ -1,0 +1,40 @@
+version: '3'
+services:
+  backend:
+    container_name: backend
+    build: 
+      context: .
+      dockerfile: ./backend/docker/Dockerfile
+    volumes:
+      - ./backend/app:/backend
+    tty: true
+    ports:
+    - "8080:8080"
+  db:
+    container_name: db
+    build:
+      context: .
+      dockerfile: ./db/docker/Dockerfile
+    environment:
+      - POSTGRES_DB=sample_app
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - db-store:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432
+  frontend:
+    container_name: frontend
+    build: 
+      context: .
+      dockerfile: ./frontend/docker/Dockerfile
+    volumes:
+      - ./frontend/app:/frontend
+    ports:
+      - "5173:5173"
+      - "24678:24678"
+    tty: true
+    command: sh -c "npm install && npm run dev"
+volumes:
+  db-store:
