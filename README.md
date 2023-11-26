@@ -1,5 +1,7 @@
 # React-Go-PostgreSQL-Docker
 
+|          |                   | 
+| -------- | ----------------- | 
 | Docker   | 24.0.6            | 
 | golang   | 1.21.4-alpine3.18 | 
 | postgres | 15.1              | 
