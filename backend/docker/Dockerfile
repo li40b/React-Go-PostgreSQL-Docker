@@ -1,4 +1,4 @@
-FROM golang:1.19.2-alpine
+FROM golang:1.21.4-alpine3.18
 ENV GO111MODULE on
 
 RUN apk update && \
@@ -8,4 +8,4 @@ RUN apk update && \
 RUN mkdir /backend
 WORKDIR /backend
 
-CMD ["go", "run", "main.go"]
+# CMD ["go", "run", "main.go"]
